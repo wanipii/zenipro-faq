@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ja"><head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>たくろーさん物販ぜにプロ用FAQ</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap">
@@ -424,4 +425,14 @@ const h0=(location.hash||"").slice(1);if(STAGES.some(s=>s.id===h0))stage=h0;
 buildTabs();render();
 </script>
 
+<script>
+/* テスト版(/dev/)で開いたときだけ、目印の帯を出す。本番では何も出ない。 */
+if(/\/dev(\/|$)/.test(location.pathname)){
+  document.title="【テスト版】"+document.title;
+  const b=document.createElement("div");
+  b.textContent="テスト版（確認用です。メンバーには共有しないでください）";
+  b.style.cssText="background:#ffd84d;color:#3a2c00;font:700 13px/1.5 sans-serif;text-align:center;padding:6px 10px;margin:0 -16px";
+  document.body.prepend(b);
+}
+</script>
 </body></html>
