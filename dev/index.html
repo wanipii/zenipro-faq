@@ -52,8 +52,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 article{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px 20px;margin-bottom:14px;scroll-margin-top:150px}
 article h3{font-family:var(--f-head);font-size:18px;line-height:1.55;margin:0 0 10px;font-weight:700;display:flex;gap:10px;align-items:flex-start}
 article h3 i{flex:none;font-style:normal;background:var(--accent-soft);color:var(--accent);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;margin-top:3px}
-article ul{margin:0;padding-left:1.3em;display:grid;gap:8px}
-article li::marker{color:var(--accent)}
+.ans{display:grid;gap:10px}
+.ans p{margin:0}
+.ans p.sub{padding-left:1.4em;color:var(--mute)}
 article a{color:var(--lav);word-break:break-all}
 .sgroup{margin-top:26px}
 .sgroup:first-child{margin-top:0}
@@ -85,7 +86,7 @@ footer{margin-top:36px;font-size:12.5px;color:var(--mute)}
   .idx ol{gap:0}
   article{scroll-margin-top:110px;padding:14px 15px}
   article h3{font-size:16.5px;line-height:1.5;margin-bottom:8px}
-  article ul{gap:6px}
+  .ans{gap:8px}
 }
 
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
@@ -434,7 +435,7 @@ function setStage(id){
   render();window.scrollTo({top:0});
 }
 function article(f){
-  return '<article id="'+f.id+'"><h3><i>Q</i><span>'+esc(f.q)+'</span></h3><ul>'+f.a.map(x=>'<li>'+fmt(x)+'</li>').join("")+'</ul></article>';
+  return '<article id="'+f.id+'"><h3><i>Q</i><span>'+esc(f.q)+'</span></h3><div class="ans">'+f.a.map(x=>{const t=x.replace(/^[\s\u3000]+/,"");return '<p'+(/^[→↳]/.test(t)?' class="sub"':'')+'>'+fmt(t)+'</p>'}).join("")+'</div></article>';
 }
 function render(){
   const searching=!!query;
